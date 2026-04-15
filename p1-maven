@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+    tools {
+        maven 'M3'
+    }
+    stages {
+        stage('Checkout Git') {
+            steps {
+                git branch: 'master',
+                url: 'https://github.com/mohammedsheheer/attendance-calculator.git'
+            }
+        }
+        stage('Build and Test') {
+            steps {
+                sh 'mvn clean test'
+            }
+        }
+    }
+}
